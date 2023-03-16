@@ -5,7 +5,7 @@ using PhoneBook.Entities.Concrete;
 
 namespace PhoneBook.DataAccess.Concrete.EntityFramework
 {
-    public class EfPersonDal : EfEntityRepositoryBase<Person, PhoneBookContext>, IPersonDal
+    public class EfContactInformationDal : EfEntityRepositoryBase<ContactInformation, PhoneBookContext>, IContactInformationDal
     {
     }
 }
