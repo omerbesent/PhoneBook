@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Business.Abstract;
+using PhoneBook.Entities.Concrete;
 
 namespace PhoneBook.WebAPI.Controllers
 {
@@ -19,6 +19,22 @@ namespace PhoneBook.WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _personService.GetList();
+
+            return Ok(result);
+        }
+
+        [HttpPost("Add")]
+        public IActionResult Add(Person person)
+        {
+            var result = _personService.Add(person);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete(int personId)
+        {
+            var result = _personService.Delete(personId);
 
             return Ok(result);
         }
