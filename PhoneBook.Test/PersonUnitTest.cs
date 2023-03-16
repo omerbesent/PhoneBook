@@ -13,9 +13,9 @@ namespace PhoneBook.Test
 
             var person = new Person
             {
-                Name = "TestName",
-                LastName = "TestLastName",
-                Company = "TestCompany"
+                Name = "Test2Name",
+                LastName = "Test2LastName",
+                Company = "Test2Company"
             };
 
             var result = personManager.Add(person);
@@ -28,7 +28,7 @@ namespace PhoneBook.Test
         {
             var personManager = new PersonManager(new EfPersonDal());
 
-            var personId = 1;
+            var personId = 3;
 
             var result = personManager.Delete(personId);
 
