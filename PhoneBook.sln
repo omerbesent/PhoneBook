@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Entities", "PhoneBook.Entities\PhoneBook.Entities.csproj", "{DA372CCE-6155-4610-BF7B-5580D14D2F5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook.Entities", "PhoneBook.Entities\PhoneBook.Entities.csproj", "{DA372CCE-6155-4610-BF7B-5580D14D2F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.DataAccess", "PhoneBook.DataAccess\PhoneBook.DataAccess.csproj", "{B1943B7C-1239-4488-809F-5E34806294D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook.DataAccess", "PhoneBook.DataAccess\PhoneBook.DataAccess.csproj", "{B1943B7C-1239-4488-809F-5E34806294D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Business", "PhoneBook.Business\PhoneBook.Business.csproj", "{DA5CB147-737A-43E6-AD28-2E323EE0B409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook.Business", "PhoneBook.Business\PhoneBook.Business.csproj", "{DA5CB147-737A-43E6-AD28-2E323EE0B409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Core", "PhoneBook.Core\PhoneBook.Core.csproj", "{42A1EE70-A64A-4A11-A780-E42CFEC93DC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook.Core", "PhoneBook.Core\PhoneBook.Core.csproj", "{42A1EE70-A64A-4A11-A780-E42CFEC93DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Test", "PhoneBook.Test\PhoneBook.Test.csproj", "{2B408C40-4435-4FCC-943F-40533C668BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook.Test", "PhoneBook.Test\PhoneBook.Test.csproj", "{2B408C40-4435-4FCC-943F-40533C668BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.WebAPI", "PhoneBook.WebAPI\PhoneBook.WebAPI.csproj", "{73B81A98-BE22-4E89-B1EC-60A2C219199B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2B408C40-4435-4FCC-943F-40533C668BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B408C40-4435-4FCC-943F-40533C668BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B408C40-4435-4FCC-943F-40533C668BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B81A98-BE22-4E89-B1EC-60A2C219199B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B81A98-BE22-4E89-B1EC-60A2C219199B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B81A98-BE22-4E89-B1EC-60A2C219199B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B81A98-BE22-4E89-B1EC-60A2C219199B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
