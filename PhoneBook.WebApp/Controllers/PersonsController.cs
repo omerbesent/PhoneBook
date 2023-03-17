@@ -31,8 +31,23 @@ namespace PhoneBook.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var result = _personService.Add(personViewModel);
+                if (result.Success)
+                    return RedirectToAction("Index");
             }
             return View();
         }
+
+        public IActionResult Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _personService.Delete(id);
+                if (result.Success)
+                    return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
     }
 }

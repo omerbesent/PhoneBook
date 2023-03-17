@@ -33,9 +33,17 @@ namespace PhoneBook.WebApp.Services.Concrete
             return result;
         }
 
-        public void Delete(int personId)
+        public ResponseModel Delete(int personId)
         {
-            throw new NotImplementedException();
+            var result = new ResponseModel { Success = false };
+
+            HttpResponseMessage httpResponseMessage = _httpClient.DeleteAsync($"{apiUrl}/Delete?personId={personId}").Result;
+            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var jsonData = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<ResponseModel>(jsonData);
+            }
+            return result;
         }
 
         public ResponseDataModel<List<Person>> GetAll()

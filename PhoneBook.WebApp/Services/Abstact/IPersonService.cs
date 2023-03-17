@@ -7,6 +7,6 @@ namespace PhoneBook.WebApp.Services.Abstact
     {
         ResponseModel Add(PersonViewModel personViewModel);
         ResponseDataModel<List<Person>> GetAll();
-        void Delete(int personId);
+        ResponseModel Delete(int personId);
     }
 }
