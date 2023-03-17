@@ -1,0 +1,43 @@
+﻿using Newtonsoft.Json;
+using PhoneBook.WebApp.Models;
+using PhoneBook.WebApp.Models.ServiceModel;
+using PhoneBook.WebApp.Services.Abstact;
+
+namespace PhoneBook.WebApp.Services.Concrete
+{
+    public class ContactInformationManager : IContactInformationService
+    {
+        private readonly IConfiguration _configuration;
+        private readonly HttpClient _httpClient;
+        string apiUrl;
+        public ContactInformationManager(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            var webServiceUrl = _configuration.GetSection("WebServiceURL").Get<string>();
+            apiUrl = $"{webServiceUrl}/ContactInformations";
+
+            _httpClient = HttpClientFactory.Create();
+        }
+        public ResponseModel Add(ContactInformationViewModel contactInformationViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ResponseModel Delete(int contactInformationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ResponseDataModel<List<ContactInformation>> GetAllByPersonId(int personId)
+        {
+            var result = new ResponseDataModel<List<ContactInformation>>() { Success = false };
+            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync($"{apiUrl}/GetByPersonId?personId={personId}").Result;
+            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var jsonData = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<ResponseDataModel<List<ContactInformation>>>(jsonData);
+            }
+            return result;
+        }
+    }
+}

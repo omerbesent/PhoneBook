@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IPersonService, PersonManager>();
+builder.Services.AddSingleton<IContactInformationService, ContactInformationManager>();
 
 var app = builder.Build();
 
