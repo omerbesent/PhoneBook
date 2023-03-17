@@ -15,7 +15,8 @@ namespace PhoneBook.WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var personList = _personService.GetAll();
+            return View(personList.Data);
         }
 
         [HttpGet]
@@ -27,7 +28,6 @@ namespace PhoneBook.WebApp.Controllers
         [HttpPost]
         public IActionResult Create(PersonViewModel personViewModel)
         {
-            var result2 = _personService.GetAll();
             if (ModelState.IsValid)
             {
                 var result = _personService.Add(personViewModel);

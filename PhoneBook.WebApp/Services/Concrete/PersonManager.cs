@@ -1,10 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PhoneBook.WebApp.Models;
 using PhoneBook.WebApp.Models.ServiceModel;
 using PhoneBook.WebApp.Services.Abstact;
-using System;
-using System.Net.Http;
 using System.Text;
 
 namespace PhoneBook.WebApp.Services.Concrete
