@@ -1,7 +1,12 @@
+using PhoneBook.WebApp.Services.Abstact;
+using PhoneBook.WebApp.Services.Concrete;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IPersonService, PersonManager>();
 
 var app = builder.Build();
 
