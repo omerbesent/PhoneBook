@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PhoneBook.WebApp.Models;
 
 namespace PhoneBook.WebApp.Controllers
 {
@@ -6,6 +7,22 @@ namespace PhoneBook.WebApp.Controllers
     {
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(PersonViewModel personViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
             return View();
         }
     }
