@@ -19,8 +19,19 @@ namespace PhoneBook.WebApp.Controllers
 
         public IActionResult List(int id)
         {
-            var result =_contactInformationService.GetAllByPersonId(id);
+            var result = _contactInformationService.GetAllByPersonId(id);
             return View(result.Data);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _contactInformationService.Delete(id);
+                if (result.Success)
+                    return Redirect("/Persons/Index");
+            }
+            return View();
         }
     }
 }
