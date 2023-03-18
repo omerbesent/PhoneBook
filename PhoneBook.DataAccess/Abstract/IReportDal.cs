@@ -5,5 +5,6 @@ namespace PhoneBook.DataAccess.Abstract
 {
     public interface IReportDal : IEntityRepository<Report>
     {
+        Report CustomAdd(Report report);
     }
 }
