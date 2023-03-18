@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using PhoneBook.Business.Abstract;
 
 namespace PhoneBook.WebAPI.Controllers
@@ -8,10 +9,11 @@ namespace PhoneBook.WebAPI.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly IRabbitMQService _rabbitMqService;
-
-        public ReportsController(IRabbitMQService rabbitMqService)
+        private readonly IReportService _reportService;
+        public ReportsController(IRabbitMQService rabbitMqService, IReportService reportService)
         {
             _rabbitMqService = rabbitMqService;
+            _reportService = reportService;
         }
 
         [HttpGet("RequestReport")]
@@ -20,6 +22,27 @@ namespace PhoneBook.WebAPI.Controllers
             _rabbitMqService.RequestReport();
 
             return Ok();
+        }
+
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
+        {
+            var report = _reportService.GetAll();
+
+            return Ok(report);
+        }
+
+        [HttpPost("ReportDownload")]
+        public IActionResult ReportDownload(int reportId)
+        {
+
+            var report = _reportService.GetById(reportId);
+            var fileName = System.IO.Path.GetFileName(report.Data.ReportPath);
+            var content = System.IO.File.ReadAllBytes(report.Data.ReportPath);
+            new FileExtensionContentTypeProvider()
+                .TryGetContentType(fileName, out string contentType);
+
+            return File(content, contentType, fileName);
         }
     }
 }

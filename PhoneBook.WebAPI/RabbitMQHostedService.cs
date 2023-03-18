@@ -62,7 +62,6 @@ namespace PhoneBook.WebAPI
                     ws.Range($"C{i + 2}").Value = report[i].PhoneCount.ToString();
                 }
 
-
                 var fileName = $"Konum_Raporu_{DateTime.Now.Ticks}.xlsx";
                 var filePath = $"Upload/Reports/{fileName}";
 
