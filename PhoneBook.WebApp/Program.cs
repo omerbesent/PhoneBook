@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IPersonService, PersonManager>();
 builder.Services.AddSingleton<IContactInformationService, ContactInformationManager>();
+builder.Services.AddSingleton<IReportService, ReportManager>();
 
 var app = builder.Build();
 
