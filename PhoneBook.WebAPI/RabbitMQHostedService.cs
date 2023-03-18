@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PhoneBook.Business.Abstract;
+using PhoneBook.Entities.Concrete.Dto;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -34,7 +35,7 @@ namespace PhoneBook.WebAPI
             consumer.Received += (model, e) =>
             {
                 var strJson = Encoding.UTF8.GetString(e.Body.ToArray());
-                var body = JsonConvert.DeserializeObject<string>(strJson);
+                var body = JsonConvert.DeserializeObject<IList<LocationReportDto>>(strJson);
 
                 var fromReport = _reportService.GetById(Convert.ToInt32(e.BasicProperties.MessageId));
                 fromReport.Data.ReportStatus = "Tamamlandı";

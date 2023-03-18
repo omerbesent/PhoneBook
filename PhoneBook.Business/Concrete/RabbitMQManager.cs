@@ -9,11 +9,13 @@ namespace PhoneBook.Business.Concrete
     public class RabbitMQManager : IRabbitMQService
     {
         private readonly IReportService _reportService;
+        private readonly IPersonService _personService;
         IConnection connection;
         IModel channel;
-        public RabbitMQManager(IReportService reportService)
+        public RabbitMQManager(IReportService reportService, IPersonService personService)
         {
             _reportService = reportService;
+            _personService = personService;
 
             var factory = new ConnectionFactory();
             factory.Uri = new Uri("amqps://tokcpplt:3z3LVZe6dV3FnOCpDxOcIQgmLNzdqHnA@shrimp.rmq.cloudamqp.com/tokcpplt");
@@ -21,11 +23,13 @@ namespace PhoneBook.Business.Concrete
             channel = connection.CreateModel();
             channel.QueueDeclare("Reports", true, false, false);
         }
+
         public void RequestReport()
         {
             var report = CreateReport();
 
-            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject("data"));
+            var reportData = _personService.GetLocationReport();
+            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(reportData));
 
             IBasicProperties messageProperties = channel.CreateBasicProperties();
             messageProperties.MessageId = report.UUID.ToString();
