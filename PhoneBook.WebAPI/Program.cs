@@ -2,6 +2,7 @@ using PhoneBook.Business.Abstract;
 using PhoneBook.Business.Concrete;
 using PhoneBook.DataAccess.Abstract;
 using PhoneBook.DataAccess.Concrete.EntityFramework;
+using PhoneBook.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,17 @@ builder.Services.AddSingleton<IPersonDal, EfPersonDal>();
 
 builder.Services.AddSingleton<IContactInformationService, ContactInformationManager>();
 builder.Services.AddSingleton<IContactInformationDal, EfContactInformationDal>();
+
+builder.Services.AddSingleton<IRabbitMQService, RabbitMQManager>();
+
+builder.Services.AddHostedService<RabbitMQHostedService>();
+
+builder.Services.AddLogging(i =>
+{
+    i.AddConsole();
+    i.AddDebug();
+});
+
 
 var app = builder.Build();
 
