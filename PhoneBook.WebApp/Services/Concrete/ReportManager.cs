@@ -29,14 +29,22 @@ namespace PhoneBook.WebApp.Services.Concrete
             return result;
         }
 
-        public byte[] ReportDownload(int reportId)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool RequestReport()
         {
-            throw new NotImplementedException();
+            var result = new ResponseDataModel<List<Report>>() { Success = false };
+            HttpResponseMessage httpResponseMessage = _httpClient.GetAsync($"{apiUrl}/RequestReport").Result;
+            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public byte[] ReportDownload(int reportId)
+        {
+            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync($"{apiUrl}/ReportDownload?reportId={reportId}", null).Result;
+            var file = httpResponseMessage.Content.ReadAsByteArrayAsync().Result;
+            return file;
         }
     }
 }
