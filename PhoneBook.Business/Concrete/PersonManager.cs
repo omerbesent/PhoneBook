@@ -2,6 +2,7 @@
 using PhoneBook.Core.Utilities.Results;
 using PhoneBook.DataAccess.Abstract;
 using PhoneBook.Entities.Concrete;
+using PhoneBook.Entities.Concrete.Dto;
 
 namespace PhoneBook.Business.Concrete
 {
@@ -31,6 +32,12 @@ namespace PhoneBook.Business.Concrete
         {
             var persons = _personDal.GetList();
             return new SuccessDataResult<IList<Person>>(persons, "Kişiler listelendi");
+        }
+
+        public IList<LocationReportDto> GetLocationReport()
+        {
+            var report = _personDal.LocationReport();
+            return report;
         }
     }
 }

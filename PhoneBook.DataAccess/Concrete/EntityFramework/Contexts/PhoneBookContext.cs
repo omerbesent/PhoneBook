@@ -12,5 +12,6 @@ namespace PhoneBook.DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<ContactInformation> ContactInformations { get; set; }
+        public DbSet<Report> Reports { get; set; }
     }
 }
