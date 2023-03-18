@@ -19,6 +19,9 @@ builder.Services.AddSingleton<IPersonDal, EfPersonDal>();
 builder.Services.AddSingleton<IContactInformationService, ContactInformationManager>();
 builder.Services.AddSingleton<IContactInformationDal, EfContactInformationDal>();
 
+builder.Services.AddSingleton<IReportService, ReportManager>();
+builder.Services.AddSingleton<IReportDal, EfReportDal>();
+
 builder.Services.AddSingleton<IRabbitMQService, RabbitMQManager>();
 
 builder.Services.AddHostedService<RabbitMQHostedService>();
@@ -28,7 +31,6 @@ builder.Services.AddLogging(i =>
     i.AddConsole();
     i.AddDebug();
 });
-
 
 var app = builder.Build();
 

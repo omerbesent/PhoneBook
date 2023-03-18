@@ -6,7 +6,7 @@ using PhoneBook.Entities.Concrete;
 
 namespace PhoneBook.DataAccess.Concrete.EntityFramework
 {
-    public class EfReportnDal : EfEntityRepositoryBase<Report, PhoneBookContext>, IReportDal
+    public class EfReportDal : EfEntityRepositoryBase<Report, PhoneBookContext>, IReportDal
     {
         public Report CustomAdd(Report report)
         {
