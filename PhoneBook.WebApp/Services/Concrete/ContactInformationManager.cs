@@ -2,6 +2,7 @@
 using PhoneBook.WebApp.Models;
 using PhoneBook.WebApp.Models.ServiceModel;
 using PhoneBook.WebApp.Services.Abstact;
+using System.Text;
 
 namespace PhoneBook.WebApp.Services.Concrete
 {
@@ -20,7 +21,16 @@ namespace PhoneBook.WebApp.Services.Concrete
         }
         public ResponseModel Add(ContactInformationViewModel contactInformationViewModel)
         {
-            throw new NotImplementedException();
+            var result = new ResponseModel { Success = false };
+
+            HttpContent body = new StringContent(JsonConvert.SerializeObject(contactInformationViewModel), Encoding.UTF8, "application/json");
+            HttpResponseMessage httpResponseMessage = _httpClient.PostAsync($"{apiUrl}/Add", body).Result;
+            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var jsonData = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<ResponseModel>(jsonData);
+            }
+            return result;
         }
 
         public ResponseModel Delete(int contactInformationId)
