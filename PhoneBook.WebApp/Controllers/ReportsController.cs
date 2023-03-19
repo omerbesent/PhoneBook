@@ -19,5 +19,26 @@ namespace PhoneBook.WebApp.Controllers
             var result = _reportService.GetAll();
             return View(result.Data);
         }
+
+        public IActionResult ReportDownload(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _reportService.ReportDownload(id);
+                return File(result, "application/xlsx", $"Konum_Raporu_{DateTime.Now.Ticks}.xlsx");
+            }
+            return View();
+        }
+
+        public IActionResult RequestReport()
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _reportService.RequestReport();
+                if (result)
+                    return RedirectToAction("List");
+            }
+            return View();
+        }
     }
 }

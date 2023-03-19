@@ -11,9 +11,8 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Adı</th>
-            <th scope="col">Soyadı</th>
-            <th scope="col">Firma</th>
+            <th scope="col">Rapor Tarihi</th>
+            <th scope="col">Rapor Durumu</th>
             <th scope="col">İşlemler</th>
         </tr>
     </thead>
@@ -24,7 +23,6 @@
                 <th scope="row">@report.UUID</th>
                 <td>@report.ReportCreatedDate</td>
                 <td>@report.ReportStatus</td>
-                <td>@report.ReportPath</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="/Reports/ReportDownload/@report.UUID" type="button" class="btn btn-success">İndir</a>
