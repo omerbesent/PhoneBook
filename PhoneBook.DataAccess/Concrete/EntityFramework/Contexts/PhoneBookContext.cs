@@ -9,7 +9,7 @@ namespace PhoneBook.DataAccess.Concrete.EntityFramework.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             JToken jAppSettings = JToken.Parse(
-             File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
+             File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "../PhoneBook.WebAPI/appsettings.json")));
             string connectionString = jAppSettings["ConnectionStrings"]["PhoneBookConnection"].ToString();
 
             optionsBuilder.UseNpgsql(connectionString);
