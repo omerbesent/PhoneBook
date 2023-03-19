@@ -70,7 +70,6 @@ namespace PhoneBook.WebAPI
                 var fromReport = _reportService.GetById(messageId);
                 fromReport.Data.ReportStatus = "Tamamlandı";
                 fromReport.Data.ReportPath = filePath;
-                fromReport.Data.ReportCreatedDate = DateTime.UtcNow;
                 var result = _reportService.Update(fromReport.Data);
             }
 
