@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using PhoneBook.Entities.Concrete;
 
 namespace PhoneBook.DataAccess.Concrete.EntityFramework.Contexts
@@ -7,7 +8,11 @@ namespace PhoneBook.DataAccess.Concrete.EntityFramework.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=PhoneBook;Username=postgres;Password=123456a.A");
+            JToken jAppSettings = JToken.Parse(
+             File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
+            string connectionString = jAppSettings["ConnectionStrings"]["PhoneBookConnection"].ToString();
+
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         public DbSet<Person> Persons { get; set; }

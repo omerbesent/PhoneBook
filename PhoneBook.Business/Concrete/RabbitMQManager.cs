@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using PhoneBook.Business.Abstract;
 using PhoneBook.Entities.Concrete;
 using RabbitMQ.Client;
@@ -12,13 +13,13 @@ namespace PhoneBook.Business.Concrete
         private readonly IPersonService _personService;
         IConnection connection;
         IModel channel;
-        public RabbitMQManager(IReportService reportService, IPersonService personService)
+        public RabbitMQManager(IReportService reportService, IPersonService personService, IConfiguration configuration)
         {
             _reportService = reportService;
             _personService = personService;
 
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("amqps://tokcpplt:3z3LVZe6dV3FnOCpDxOcIQgmLNzdqHnA@shrimp.rmq.cloudamqp.com/tokcpplt");
+            factory.Uri = new Uri(configuration.GetSection("RabbitMQService").Value);
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
             channel.QueueDeclare("Reports", true, false, false);
