@@ -14,13 +14,13 @@ namespace PhoneBook.WebAPI
         private readonly IReportService _reportService;
         IConnection connection;
         IModel channel;
-        public RabbitMQHostedService(ILogger<RabbitMQHostedService> logger, IReportService reportService)
+        public RabbitMQHostedService(ILogger<RabbitMQHostedService> logger, IReportService reportService, IConfiguration configuration)
         {
             _logger = logger;
             _reportService = reportService;
 
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("amqps://tokcpplt:3z3LVZe6dV3FnOCpDxOcIQgmLNzdqHnA@shrimp.rmq.cloudamqp.com/tokcpplt");
+            factory.Uri = new Uri(configuration.GetSection("RabbitMQService").Value);
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
             channel.QueueDeclare("Reports", true, false, false);

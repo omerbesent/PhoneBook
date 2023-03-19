@@ -25,7 +25,10 @@
                 <td>@report.ReportStatus</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="/Reports/ReportDownload/@report.UUID" type="button" class="btn btn-success">İndir</a>
+                        @if (report.ReportStatus == "Tamamlandı")
+                        {
+                            <a href="/Reports/ReportDownload/@report.UUID" type="button" class="btn btn-success">İndir</a>
+                        }
                     </div>
                 </td>
             </tr>
